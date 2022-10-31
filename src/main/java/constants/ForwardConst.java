@@ -48,8 +48,7 @@ public enum ForwardConst {
         this.text = text;
     }
 
-    public String getText() {
-        return text;
+    public String getValue() {
+        return this.text;
     }
-
 }
