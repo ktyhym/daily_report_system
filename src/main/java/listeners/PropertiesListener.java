@@ -8,19 +8,31 @@ import java.util.Properties;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+/**
+ * Application Lifecycle Listener implementation class PropertiesListener
+ *
+ */
 @WebListener
-public class PropertiesListener {
+public class PropertiesListener implements ServletContextListener {
     public PropertiesListener() {
     }
 
+    /**
+     * Webアプリケーションのシャットダウン時に実行する処理
+     */
     public void contextDestroyed(ServletContextEvent arg0) {
     }
 
+    /**
+     * Webアプリケーションの起動時に実行する処理
+     */
     public void contextInitialized(ServletContextEvent arg0) {
         ServletContext context = arg0.getServletContext();
 
+        //プロパティファイルを読み込み、アプリケーションスコープに設定する
         try {
             InputStream is = PropertiesListener.class.getClassLoader().getResourceAsStream("application.properties");
 
@@ -42,5 +54,6 @@ public class PropertiesListener {
             e.printStackTrace();
         }
     }
+
 
 }
